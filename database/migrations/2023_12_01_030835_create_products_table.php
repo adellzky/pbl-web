@@ -11,16 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('katalog', function (Blueprint $table) {
+        Schema::create('product', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('item_id')->unsigned();
-            $table->string('nama_produk',100);
-            $table->bigInteger('harga');
+            $table->string('name');
+            $table->enum('category', ['grooming', 'vaksin', 'item'])->require();
+            $table->integer('stok');
+            $table->integer('price');
             $table->string('deskripsi');
-
+            $table->string('image');
             $table->timestamps();
-
-            $table->foreign('item_id')->references('id_item')->on('item');
         });
     }
 
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('katalog');
+        Schema::dropIfExists('products');
     }
 };

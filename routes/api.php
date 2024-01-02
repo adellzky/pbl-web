@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Api\APIOrderController;
+use App\Http\Controllers\Api\APIProductController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\GroomingController;
 use App\Http\Controllers\CustomerController;
@@ -20,9 +22,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+// Orders
+Route::get('/orders', [APIOrderController::class, 'index']);
+Route::get('/orders/{id}', [APIOrderController::class, 'show']);
+Route::post('/orders', [APIOrderController::class, 'store']);
+Route::post('/orders/{id}', [APIOrderController::class, 'update']);
+Route::delete('/orders/{id}', [APIOrderController::class, 'destroy']);
+
+
+// Products
+Route::get('/products', [APIProductController::class, 'index']);
+Route::get('/products/{id}', [APIProductController::class, 'show']);
+Route::post('/products', [APIProductController::class, 'store']);
+Route::post('/products/{id}', [APIProductController::class, 'update']);
+Route::delete('/products/{id}', [APIProductController::class, 'destroy']);
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
@@ -41,4 +58,4 @@ Route::post('/customer/logout', [CustomerController::class, 'logout'])->middlewa
 
 Route::resource('item', itemController::class);
 
-Route::resource('grooming', GroomingController::class);
+

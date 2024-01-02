@@ -5,21 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Item extends Model
+class Product extends Model
 {
     use HasFactory;
-    protected $table = 'item';
-    protected $primaryKey = 'id_item';
+
+    protected $table = "product";
+    protected $primaryKey = 'id';
     protected $fillable = [
-        'nama_produk',
+        'name',
+        'category',
         'stok',
-        'harga',
+        'price',
         'deskripsi',
         'image',
     ];
-
-    // public function item()
-    // {
-    //     return $this->hasMany(admin::class, '');
-    // }
 }

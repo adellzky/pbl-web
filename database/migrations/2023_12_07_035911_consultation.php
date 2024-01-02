@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('consul', function (Blueprint $table) {
             $table->bigIncrements('id_consul')->unsigned();
-            $table->string('keluhan',225);
-            $table->string('solusi',225);
+            $table->string('keluhan', 225);
+            $table->string('solusi', 225);
             $table->string('medic_record', 225);
             $table->timestamps();
 
-            $table->foreign('id_consul')->references('id_cust')->on('customers');
+            $table->foreign('id_consul')->references('id')->on('users');
         });
     }
 

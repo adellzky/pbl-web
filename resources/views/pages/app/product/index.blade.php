@@ -3,7 +3,7 @@
 @section('title', 'Manage Item')
 
 @push('style')
-    <!-- CSS Libraries -->
+    {{-- CSS Libraries --}}
 @endpush
 
 @section('main')
@@ -18,7 +18,7 @@
 
                 <div class="col-12 col-md-12 col-lg-12">
 
-                    <a href="{{ route('Item.create') }}" class="btn btn-primary mt-5">
+                    <a href="/products/add" class="btn btn-primary mt-5">
                         <h3>Add Item</h3>
                     </a>
                     <div class="card mt-4">
@@ -31,30 +31,42 @@
                                     <tr>
 
                                         <th>Id</th>
+                                        <th>Gambar</th>
                                         <th>Nama</th>
+                                        <th>Kategori</th>
                                         <th>Stok</th>
                                         <th>Harga</th>
                                         <th>Deskripsi</th>
                                         <th>Action</th>
                                     </tr>
-                                    @foreach ($item as $itm)
+                                    @foreach ($product as $products)
                                         <tr>
-                                            <td>{{ ++$i}}</td>
-                                            <td>{{ $itm->nama_produk }}</td>
-                                            <td>{{ $itm->stok }}</td>
-                                            <td>{{ $itm->harga }}</td>
-                                            <td>{{ $itm->deskripsi }}</td>
+                                            <td>{{ ++$i }}</td>
+                                            <td><img src="{{ $products['image'] }}" alt="" width="100"></td>
+                                            <td>{{ $products['name'] }}</td>
+                                            <td>{{ $products['category'] }}</td>
+                                            <td>{{ $products['stok'] }}</td>
+                                            <td>{{ $products['price'] }}</td>
+                                            <td>{{ $products['deskripsi'] }}</td>
 
                                             <td>
-                                                <form action="{{ route('Item.destroy', $itm->id_item) }}" method="POST">
 
-                                                    <a href="{{ route('Item.edit', $itm->id_item) }}"
-                                                        class="btn btn-secondary">Edit</a>
+
+
+
+                                                <form action={{ '/products/' . $products['id'] }} method="POST">
+                                                   
+                                                    <a href={{ '/products/' . $products['id'] . '/edit' }}
+                                                    class="btn btn-primary btn-action mr-1"
+                                                    data-toggle="tooltip"
+                                                    title="Edit"><i class="fas fa-pencil-alt"></i></a>
 
                                                     @csrf
                                                     @method('DELETE')
 
-                                                    <button type="submit" class="btn btn-danger">Hapus</button>
+                                                    <button type="submit" class="btn btn-danger btn-action"
+                                                    data-toggle="tooltip"
+                                                    title="Delete" ><i class="fas fa-trash"></i></button>
                                                 </form>
                                             </td>
                                         </tr>
@@ -71,7 +83,7 @@
 @endsection
 
 @push('scripts')
-    <!-- JS Libraies -->
-    @section('js')
+    <!-- JS Libraies -['
+                        @section('js')
     @endsection
 @endpush

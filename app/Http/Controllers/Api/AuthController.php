@@ -18,6 +18,7 @@ class AuthController extends Controller
             'name' => 'required',
             'email' => 'required|email',
             'password' => 'required',
+            'confirm_password' => 'required|same:password'
 
         ]);
 
@@ -32,6 +33,7 @@ class AuthController extends Controller
 
         $input['password'] = Hash::make($input['password']);
         $user = User::create($input);
+        
         $success['name'] =  $user->name;
         return response()->json([
             'success' => true,

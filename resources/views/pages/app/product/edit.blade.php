@@ -28,31 +28,34 @@
                     @endif
                 </p>
 
-                <form action="{{ route('Item.update', $item) }}" method="POST">
+                <form action={{ '/products/' . $product['id'] }} method="POST">
                     @csrf
-                    @method('PUT')
+                    @method('POST')
 
                     <div class="card-body">
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>Nama</label>
-                                    <input type="text" class="form-control" name="nama_produk"
-                                        value="{{ $item->nama_produk }}">
+                                    <input type="text" class="form-control" name="name"
+                                        value="{{ $product['name'] }}">
                                 </div>
                                 <div class="form-group">
                                     <label>Stok</label>
-                                    <input type="text" class="form-control" name="stok" value="{{ $item->stok }}">
+                                    <input type="text" class="form-control" name="stok"
+                                        value="{{ $product['stok'] }}">
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>Harga</label>
-                                    <input type="text" class="form-control" name="harga" value="{{ $item->harga }}">
+                                    <input type="text" class="form-control" name="harga"
+                                        value="{{ $product['price'] }}">
                                 </div>
                                 <div class="form-group">
                                     <label>Deskripsi</label>
-                                    <input type="text" class="form-control" name="deskripsi" value="{{ $item->deskripsi }}">
+                                    <input type="text" class="form-control" name="deskripsi"
+                                        value="{{ $product['deskripsi'] }}">
                                 </div>
 
 
